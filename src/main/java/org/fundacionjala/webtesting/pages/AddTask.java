@@ -1,13 +1,13 @@
-package com.jalasoft.webtesting.pages;
+package org.fundacionjala.webtesting.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.jalasoft.webtesting.framework.selenium.CommonMethods.clickWebElement;
-import static com.jalasoft.webtesting.framework.selenium.CommonMethods.setWebElement;
+import static org.fundacionjala.webtesting.framework.selenium.CommonMethods.clickWebElement;
+import static org.fundacionjala.webtesting.framework.selenium.CommonMethods.setWebElement;
 
-public class AddTask extends AbstractBasePage {
+public class AddTask<T extends AddTask<T>> extends AbstractBasePage {
 
     @FindBy(css = ".richtext_editor.sel_richtext_editor")
     private WebElement taskNameTxt;
@@ -22,21 +22,26 @@ public class AddTask extends AbstractBasePage {
     @FindBy(css = ".AmiMenu.priority_menu")
     private WebElement priorityMenu;
 
-    public AddTask setTaskNameTxt(String newNameTask){
+    public T setTaskNameTxt(String newNameTask){
         setWebElement(taskNameTxt, newNameTask);
-        return this;
+        return getThis();
     }
 
-    public void selectPriority(int priority){
+    public T selectPriority(int priority){
         clickWebElement(priorityIcon);
         priorityMenu.findElement(By.cssSelector("img.cmp_priority" + priority)).click();
 //        //Another implementation using xpath
 //        driver.findElement(By.xpath("//div[@class='AmiMenu priority_menu']/descendant::img[@class='cmp_priority" + priority + "']")).click();
+        return getThis();
     }
 
     public ProjectContainer clickAddTaskBtn(){
         clickWebElement(addTaskBtn);
         return new ProjectContainer();
+    }
+
+    protected T getThis() {
+        return (T) this;
     }
 
 }

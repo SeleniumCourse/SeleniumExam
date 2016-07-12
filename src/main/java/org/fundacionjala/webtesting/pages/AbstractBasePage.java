@@ -1,10 +1,9 @@
-package com.jalasoft.webtesting.pages;
+package org.fundacionjala.webtesting.pages;
 
+import org.fundacionjala.webtesting.framework.selenium.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.jalasoft.webtesting.framework.selenium.WebDriverManager;
 
 public abstract class AbstractBasePage {
 

@@ -1,10 +1,10 @@
-package com.jalasoft.webtesting.pages;
+package org.fundacionjala.webtesting.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static com.jalasoft.webtesting.framework.selenium.CommonMethods.clickWebElement;
+import static org.fundacionjala.webtesting.framework.selenium.CommonMethods.clickWebElement;
 
 public class DeleteAlert extends AbstractBasePage {
 

@@ -1,13 +1,13 @@
-package com.jalasoft.webtesting.pages;
+package org.fundacionjala.webtesting.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.jalasoft.webtesting.framework.selenium.CommonMethods.clickWebElement;
+import static org.fundacionjala.webtesting.framework.selenium.CommonMethods.clickWebElement;
 
 public class TopBar extends AbstractBasePage {
 
-    @FindBy(id = "icon_add_task")
+    @FindBy(id = "quick_add_task_holder")
     private WebElement addTaskIcon;
 
     public QuickAddTask clickAddTaskIcon() {

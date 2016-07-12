@@ -1,4 +1,4 @@
-package com.jalasoft.webtesting.pages;
+package org.fundacionjala.webtesting.pages;
 
 public class MainApp {
 

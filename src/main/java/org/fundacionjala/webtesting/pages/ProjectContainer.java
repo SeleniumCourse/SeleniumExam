@@ -1,4 +1,4 @@
-package com.jalasoft.webtesting.pages;
+package org.fundacionjala.webtesting.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -6,8 +6,8 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import static com.jalasoft.webtesting.framework.selenium.CommonMethods.clickWebElement;
-import static com.jalasoft.webtesting.framework.selenium.CommonMethods.isElementPresent;
+import static org.fundacionjala.webtesting.framework.selenium.CommonMethods.clickWebElement;
+import static org.fundacionjala.webtesting.framework.selenium.CommonMethods.isElementPresent;
 
 public class ProjectContainer extends AbstractBasePage {
 

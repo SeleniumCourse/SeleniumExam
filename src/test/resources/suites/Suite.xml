@@ -2,8 +2,8 @@
 <suite name="Suite1" verbose="1" >
     <test name="Suite1" >
         <classes>
-            <class name="com.jalasoft.webtesting.tests.AddTaskFromInboxTest"/>
-            <class name="com.jalasoft.webtesting.tests.QuickAddTaskTest"/>
+            <class name="org.fundacionjala.webtesting.tests.AddTaskFromInboxTest"/>
+            <class name="org.fundacionjala.webtesting.tests.QuickAddTaskTest"/>
         </classes>
     </test>
 </suite>

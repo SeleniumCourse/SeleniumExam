@@ -1,34 +1,28 @@
-package com.jalasoft.webtesting.tests;
+package org.fundacionjala.webtesting.tests;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.jalasoft.webtesting.pages.AddTask;
-import com.jalasoft.webtesting.pages.HomePage;
-import com.jalasoft.webtesting.pages.LeftMenu;
-import com.jalasoft.webtesting.pages.LoginPage;
-import com.jalasoft.webtesting.pages.MainApp;
-import com.jalasoft.webtesting.pages.ProjectContainer;
+import org.fundacionjala.webtesting.pages.AddTask;
+import org.fundacionjala.webtesting.pages.LeftMenu;
+import org.fundacionjala.webtesting.pages.LoginPage;
+import org.fundacionjala.webtesting.pages.MainApp;
+import org.fundacionjala.webtesting.pages.ProjectContainer;
 
 import static org.testng.Assert.assertTrue;
 
 public class AddTaskFromInboxTest {
 
+    private static final String TASK_NAME = "my task";
+
     private LeftMenu leftMenu;
 
     private ProjectContainer projectContainer;
 
-    private static final String TASK_NAME = "my task";
-
     @BeforeClass
     public void setUp() {
-        final String userName = "carledriss@gmail.com";
-        final String password = "P@ssw0rd";
-
-        HomePage homePage = new HomePage();
-        LoginPage loginPage = homePage.clickLoginBtn();
-        MainApp mainApp = loginPage.loginAs(userName, password);
+        MainApp mainApp = LoginPage.loginAsPrimaryUser();
         leftMenu = mainApp.goToLeftMenu();
         projectContainer = leftMenu.goToInbox();
     }
@@ -38,9 +32,9 @@ public class AddTaskFromInboxTest {
         final int priority = 1;
 
         AddTask addTask = projectContainer.clickAddTaskLnk();
-        addTask.setTaskNameTxt(TASK_NAME);
-        addTask.selectPriority(priority);
-        projectContainer = addTask.clickAddTaskBtn();
+        projectContainer = addTask.setTaskNameTxt(TASK_NAME)
+                .selectPriority(priority)
+                .clickAddTaskBtn();
 
         assertTrue(projectContainer.isTaskAdded(TASK_NAME), "Task should be added");
     }

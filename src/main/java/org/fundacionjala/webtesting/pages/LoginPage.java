@@ -1,12 +1,12 @@
-package com.jalasoft.webtesting.pages;
+package org.fundacionjala.webtesting.pages;
 
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static com.jalasoft.webtesting.framework.selenium.CommonMethods.clickWebElement;
-import static com.jalasoft.webtesting.framework.selenium.CommonMethods.setWebElement;
+import static org.fundacionjala.webtesting.framework.selenium.CommonMethods.clickWebElement;
+import static org.fundacionjala.webtesting.framework.selenium.CommonMethods.setWebElement;
 
 public class LoginPage extends AbstractBasePage {
 
@@ -63,6 +63,15 @@ public class LoginPage extends AbstractBasePage {
         setEmailTxt(userName);
         setPasswordTxt(password);
         return clickLoginBtn();
+    }
+
+    public static MainApp loginAsPrimaryUser() {
+        final String userName = "carledriss@gmail.com";
+        final String password = "P@ssw0rd";
+
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLoginBtn();
+        return loginPage.loginAs(userName, password);
     }
 
     private void switchToFrames() {

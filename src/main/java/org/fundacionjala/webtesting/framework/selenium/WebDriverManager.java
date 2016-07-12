@@ -1,4 +1,4 @@
-package com.jalasoft.webtesting.framework.selenium;
+package org.fundacionjala.webtesting.framework.selenium;
 
 import java.util.concurrent.TimeUnit;
 
