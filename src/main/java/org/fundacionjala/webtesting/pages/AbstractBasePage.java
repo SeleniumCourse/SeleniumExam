@@ -2,8 +2,9 @@ package org.fundacionjala.webtesting.pages;
 
 import org.fundacionjala.webtesting.framework.selenium.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.openqa.selenium.support.PageFactory.initElements;
 
 public abstract class AbstractBasePage {
 
@@ -14,7 +15,7 @@ public abstract class AbstractBasePage {
     public AbstractBasePage() {
         driver = WebDriverManager.getInstance().getDriver();
         wait = WebDriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
+        initElements(driver, this);
     }
 
 }

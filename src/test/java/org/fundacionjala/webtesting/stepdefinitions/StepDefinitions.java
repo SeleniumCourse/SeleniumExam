@@ -1,55 +1,58 @@
 package org.fundacionjala.webtesting.stepdefinitions;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fundacionjala.webtesting.pages.IAutomationStep;
-import org.fundacionjala.webtesting.pages.LoginPage;
+
 import org.fundacionjala.webtesting.pages.MainApp;
 import org.fundacionjala.webtesting.pages.ProjectContainer;
 import org.fundacionjala.webtesting.pages.QuickAddTask;
 import org.fundacionjala.webtesting.pages.TaskSteps;
 import org.fundacionjala.webtesting.pages.TopBar;
 
-import static org.fundacionjala.webtesting.pages.TaskSteps.PRIORITY;
-import static org.fundacionjala.webtesting.pages.TaskSteps.PROJECT;
-import static org.fundacionjala.webtesting.pages.TaskSteps.TASK_NAME;
+import static org.fundacionjala.webtesting.pages.LoginPage.loginAsPrimaryUser;
+import static org.testng.Assert.assertEquals;
 
 public class StepDefinitions {
 
     private MainApp mainApp;
 
-    private QuickAddTask quickAddTask;
-
     private ProjectContainer projectContainer;
+
+    private Map<TaskSteps, Object> valuesMap;
 
     @Given("I login as Primary User")
     public void iLoginAsPrimaryUser() {
-        mainApp = LoginPage.loginAsPrimaryUser();
+        mainApp = loginAsPrimaryUser();
     }
 
     @When("I create a Quick Task :")
     public void iCreateAQuickTask(Map<TaskSteps, Object> values) {
-
+        this.valuesMap = values;
         TopBar topBar = mainApp.goToTopBar();
-        quickAddTask = topBar.clickAddTaskIcon();
+        QuickAddTask quickAddTask = topBar.clickAddTaskIcon();
 
-        executeSteps(values, quickAddTask);
+        valuesMap.keySet().stream().forEach((step) -> {
+            quickAddTask.getStrategyStepMap(valuesMap).get(step).executeStep();
+        });
 
         projectContainer = quickAddTask.clickAddTaskBtn();
     }
 
-    private void executeSteps(Map<TaskSteps, Object> values, QuickAddTask quickAddTask) {
-        Map<TaskSteps, IAutomationStep> strategyMap = new HashMap<>();
-        strategyMap.put(TASK_NAME, () -> quickAddTask.setTaskNameTxt(values.get(TASK_NAME).toString()));
-        strategyMap.put(PRIORITY, () -> quickAddTask.selectPriority(Integer.parseInt(values.get(PRIORITY).toString())));
-        strategyMap.put(PROJECT, () -> quickAddTask.selectProject(values.get(PROJECT).toString()));
+    @Then("I verify all fields")
+    public void iVerifyAllFields() {
+        valuesMap.keySet().stream().forEach((step) -> {
+            assertEquals(projectContainer.getAssertionMap().get(step), valuesMap.get(step));
+        });
+    }
 
-        for (TaskSteps step : values.keySet()) {
-            strategyMap.get(step).executeStep();
-        }
+    @Then("I verify fields:")
+    public void iVerifyFields(Map<TaskSteps, Object> expectedValues) {
+        expectedValues.keySet().stream().forEach((step) -> {
+            assertEquals(projectContainer.getAssertionMap().get(step), expectedValues.get(step));
+        });
     }
 
 }
