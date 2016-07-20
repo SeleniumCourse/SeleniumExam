@@ -43,14 +43,14 @@ public class StepDefinitions {
 
     @Then("I verify all fields")
     public void iVerifyAllFields() {
-        valuesMap.keySet().stream().forEach((step) -> {
+        valuesMap.keySet().forEach((step) -> {
             assertEquals(projectContainer.getAssertionMap().get(step), valuesMap.get(step));
         });
     }
 
     @Then("I verify fields:")
     public void iVerifyFields(Map<TaskSteps, Object> expectedValues) {
-        expectedValues.keySet().stream().forEach((step) -> {
+        expectedValues.keySet().forEach((step) -> {
             assertEquals(projectContainer.getAssertionMap().get(step), expectedValues.get(step));
         });
     }
