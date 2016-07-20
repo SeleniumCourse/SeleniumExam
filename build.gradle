@@ -67,7 +67,6 @@ task runFeatures() {
         sleep(5000) // sleep due to cucumber.json is not created too fast
         generateReport("build/cucumber.json", "cucumber-html-report")
     }
-
 }
 
 task cucumberRerun() {
