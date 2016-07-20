@@ -66,8 +66,8 @@ public class ProjectContainer extends AbstractBasePage {
         return projectLabel.getText();
     }
 
-    public Map<TaskSteps,String> getAssertionMap() {
-        final Map<TaskSteps, String> assertionMap = new HashMap<>();
+    public Map<TaskSteps, Object> getAssertionMap() {
+        final Map<TaskSteps, Object> assertionMap = new HashMap<>();
         assertionMap.put(TASK_NAME, getLastTaskName());
         assertionMap.put(PROJECT, getProjectLabel());
         return assertionMap;

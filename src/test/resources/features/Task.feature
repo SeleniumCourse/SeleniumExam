@@ -6,7 +6,7 @@ Feature: Tasks
       | task_name | Testing |
       | project   | Errands |
 #      | priority  | 3       |
-    Then I verify all fields
-#    Then I verify fields:
-#      | task_name | Testing |
-#      | project   | Errands |
+#    Then I verify all fields
+    Then I verify fields:
+      | task_name | Testing |
+      | project   | Errands |

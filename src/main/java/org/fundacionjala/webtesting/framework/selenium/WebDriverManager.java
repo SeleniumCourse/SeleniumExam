@@ -12,9 +12,9 @@ public class WebDriverManager {
 
     private static WebDriverManager instance;
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
-    private WebDriverWait wait;
+    private final WebDriverWait wait;
 
     private WebDriverManager() {
         driver = new FirefoxDriver();
